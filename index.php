@@ -2,5 +2,7 @@
 
 require_once 'autoload.php';
 
-new \App\Db();
+$db = new \App\Db();
+
+var_dump(\App\Models\Users::fetchAll());
 
