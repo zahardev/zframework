@@ -9,6 +9,7 @@ class News extends Model
 {
     const TABLE = 'news';
 
+    public $id;
     public $title;
     public $content;
     public $date;

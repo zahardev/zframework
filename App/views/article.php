@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \App\Models\News[] $news
+ * @var \App\Models\News $article
  * */
 ?><!doctype html>
 <html class="no-js" lang="">
@@ -13,15 +13,8 @@
 </head>
 
 <body>
-  <h1>News</h1>
-    <?php foreach ($news as $new): ?>
-        <h2>
-            <a href="/article.php?id=<?= $new->id; ?>">
-                <?= $new->title; ?>
-            </a>
-        </h2>
-        <div><?= $new->date; ?></div>
-        <div><?= $new->content; ?></div>
-    <?php endforeach; ?>
+  <h1><?= $article->title; ?></h1>
+    <?= $article->date; ?>
+    <?= $article->content; ?>
 </body>
 </html>

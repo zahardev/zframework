@@ -20,6 +20,6 @@ class Model
         $query = 'SELECT * from `%s` WHERE id = %d';
         $query = sprintf($query, static::TABLE, $id);
         $res = $db->getResults($query, static::class);
-        return empty($res) ? false : $res;
+        return empty($res[0]) ? false : $res[0];
     }
 }
