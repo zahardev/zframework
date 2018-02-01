@@ -4,5 +4,5 @@ require_once 'autoload.php';
 
 $db = new \App\Db();
 
-var_dump(\App\Models\Users::fetchAll());
+var_dump(\App\Models\News::getLastNews());
 
