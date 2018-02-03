@@ -9,14 +9,14 @@ class Model
 
     public static function fetchAll()
     {
-        $db = new Db();
+        $db = Db::instance();
         $res = $db->getResults('SELECT * from ' . static::TABLE, static::class);
         return $res;
     }
 
     public static function findById($id)
     {
-        $db = new Db();
+        $db = Db::instance();
         $query = 'SELECT * from `%s` WHERE id = %d';
         $query = sprintf($query, static::TABLE, $id);
         $res = $db->getResults($query, static::class);

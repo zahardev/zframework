@@ -17,7 +17,7 @@ class News extends Model
     public static function getLastNews(string $order = 'DESC', int $offset = 0, int $limit = 3)
     {
         try {
-            $db = new Db();
+            $db = Db::instance();
 
             $orders = ['ASC', 'DESC'];
 
@@ -32,8 +32,7 @@ class News extends Model
             return $res;
         } catch (\Exception $e) {
             echo __METHOD__.$e;
+            return [];
         }
-
     }
-
 }

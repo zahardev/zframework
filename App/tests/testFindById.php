@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../../autoload.php';
 
 
-$db = new \App\Db();
+$db = \App\Db::instance();
 
 $users = \App\Models\Users::findById(3);
 
