@@ -2,11 +2,13 @@
 
 require_once __DIR__ . '/../../autoload.php';
 
-$query = "INSERT INTO `users` (`id`, `name`, `email`) VALUES (NULL, '%s', '%s');";
+$query = "INSERT INTO `users` (`name`, `email`) VALUES (':name', ':email');";
 
 $db = new \App\Db();
 
-$db->exec($query, ['user5', 'user5@test.test']);
+$values = [':name' => 'testexec', ':email' => 'testexec@test.test'];
+
+$db->exec($query, $values);
 
 $users = \App\Models\Users::fetchAll();
 
