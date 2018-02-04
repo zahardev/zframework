@@ -14,7 +14,13 @@ class Db
 
     protected function __construct()
     {
-        $this->dbh = new \PDO('mysql:host=127.0.0.1;dbname=zframework', 'root', '123');
+        $config = Config::instance();
+        $host = $config->data['db']['host'];
+        $dbname = $config->data['db']['dbname'];
+        $dbuser = $config->data['db']['dbuser'];
+        $dbpassword = $config->data['db']['dbpassword'];
+
+        $this->dbh = new \PDO("mysql:host={$host};dbname={$dbname}", $dbuser, $dbpassword);
     }
 
     public function exec($query, $args = [])
