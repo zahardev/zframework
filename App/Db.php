@@ -23,7 +23,7 @@ class Db
 
         foreach ($args as $k => $v) {
             if(false !== strpos($query, $k)){
-                $query = str_replace($k, $v, $query);
+                $query = str_replace($k, "'$v'", $query);
             }
         }
 
