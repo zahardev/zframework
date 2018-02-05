@@ -62,6 +62,8 @@ class Model
 
         /**@var Db $db */
         $db = Db::instance();
-        return $db->exec($query, $values);
+        $this->id = $db->exec($query, $values);
+
+        return $this;
     }
 }

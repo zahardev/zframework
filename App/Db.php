@@ -33,9 +33,9 @@ class Db
             }
         }
 
-        $dbh = $this->dbh->prepare($query);
-        $res = $dbh->execute();
-        return $res;
+        $sth = $this->dbh->prepare($query);
+        $sth->execute();
+        return $this->dbh->lastInsertId();
     }
 
     public function getResults($query, $class, $args = [])
