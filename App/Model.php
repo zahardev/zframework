@@ -66,4 +66,45 @@ class Model
 
         return $this;
     }
+
+
+    public function update()
+    {
+        if ( $this->isEmpty()) {
+            return false;
+        }
+
+        $updates = [];
+
+        foreach ($this as $k => $v) {
+            if('id'==$k){
+                continue;
+            }
+
+            $updates[] = "$k = '$v'";
+        }
+
+        $query = 'UPDATE `%s` SET %s WHERE id=%d';
+        $query = sprintf(
+            $query,
+            static::TABLE,
+            implode(',', $updates),
+            $this->id
+        );
+
+        /**@var Db $db */
+        $db = Db::instance();
+        $this->id = $db->exec($query);
+
+        return $this;
+    }
+
+    public function save()
+    {
+        if($this->isEmpty()){
+            return $this->insert();
+        } else {
+            return $this->update();
+        }
+    }
 }
