@@ -107,4 +107,17 @@ class Model
             return $this->update();
         }
     }
+
+    public function delete()
+    {
+        if(!$this->isEmpty()){
+            $query = 'DELETE FROM `' . static::TABLE . '` WHERE id=:id';
+            $db = Db::instance();
+            $args = [':id' => $this->id];
+
+            $db->exec($query, $args);
+        }
+
+        unset($this);
+    }
 }
