@@ -10,4 +10,3 @@ if ($article) {
 } else {
     echo 'Page not found!';
 }
-

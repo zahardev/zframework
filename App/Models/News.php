@@ -14,7 +14,7 @@ class News extends Model
     public $content;
     public $date;
 
-    public static function getLastNews(string $order = 'DESC', int $offset = 0, int $limit = 3)
+    public static function getLastNews(string $order = 'DESC', int $offset = 0, int $limit = 5)
     {
         try {
             $db = Db::instance();
