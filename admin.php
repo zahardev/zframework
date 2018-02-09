@@ -21,6 +21,13 @@ if($action){
             $new->delete();
             break;
         case 'update':
+            $new = \App\Models\News::findById($id);
+            $fields = ['title', 'content', 'date'];
+
+            foreach ($fields as $field) {
+                $new->{$field} = filter_input(INPUT_POST, $field);
+            }
+            $new->save();
             break;
     }
     header('LOCATION: ' . '/admin.php');

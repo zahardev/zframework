@@ -20,20 +20,31 @@
 
     <?php foreach ($news as $new): ?>
         <hr>
-        <h2>
-            <a href="/article.php?id=<?= $new->id; ?>">
-                <?= $new->title; ?>
-            </a>
-        </h2>
-        <div><?= $new->date; ?></div>
-        <div><?= $new->content; ?></div>
+
+        <a href="/article.php?id=<?= $new->id; ?>">
+            View
+        </a>
+        <form action="" method="post">
+            <input type="hidden" name="action" value="update" />
+            <input type="hidden" name="id" value="<?= $new->id; ?>" />
+            <h2>
+                <input type="text" name="title" value="<?= $new->title; ?>" />
+            </h2>
+            <div>
+                <input type="text" name="date" value="<?= $new->date; ?>" />
+            </div>
+            <div>
+                <textarea cols="100" rows="5" name="content"><?= $new->content; ?></textarea>
+            </div>
+
+            <input type="submit" value="update" style="float:;" />
+        </form>
         <form action="" method="post">
             <input type="hidden" name="action" value="delete" />
             <input type="hidden" name="id" value="<?= $new->id; ?>" />
             <input type="submit" value="delete" />
         </form>
     <?php endforeach; ?>
-
 
 </body>
 </html>
