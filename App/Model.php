@@ -16,6 +16,12 @@ class Model
         return $res;
     }
 
+    /**
+     *
+     * @param $id
+     *
+     * @return Model|false
+     */
     public static function findById($id)
     {
         $db    = Db::instance();

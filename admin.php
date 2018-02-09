@@ -2,15 +2,27 @@
 
 require_once 'autoload.php';
 
-if(isset($_POST['news_title'])){
-    $news = new \App\Models\News();
-    $news->title = filter_input(INPUT_POST, 'news_title');
-    $news->content = filter_input(INPUT_POST, 'news_content');
-    $news->date = filter_input(INPUT_POST, 'news_date');
-    if(empty($news->date)){
-      $news->date = date('Y-m-d');
+$action = filter_input(INPUT_POST, 'action');
+if($action){
+    $id = filter_input(INPUT_POST, 'id');
+    switch ($action){
+        case 'add' :
+            $news = new \App\Models\News();
+            $news->title = filter_input(INPUT_POST, 'news_title');
+            $news->content = filter_input(INPUT_POST, 'news_content');
+            $news->date = filter_input(INPUT_POST, 'news_date');
+            if(empty($news->date)){
+                $news->date = date('Y-m-d');
+            }
+            $news->save();
+            break;
+        case 'delete':
+            $new = \App\Models\News::findById($id);
+            $new->delete();
+            break;
+        case 'update':
+            break;
     }
-    $news->save();
     header('LOCATION: ' . '/admin.php');
 }
 

@@ -11,6 +11,7 @@
         <label for="news_date">Date</label>
         <input type="text" id="news_date" name="news_date" value="<?php echo date('Y-m-d'); ?>" />
     </div>
+    <input type="hidden" name="action" value="add" />
     <div>
         <input type="submit" value="Add">
     </div>

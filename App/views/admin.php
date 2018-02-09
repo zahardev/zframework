@@ -17,14 +17,23 @@
 <h2>Add news</h2>
 
 <?php include __DIR__ . '/add_news_form.php'; ?>
-<?php foreach ($news as $new): ?>
-    <h2>
-        <a href="/article.php?id=<?= $new->id; ?>">
-            <?= $new->title; ?>
-        </a>
-    </h2>
-    <div><?= $new->date; ?></div>
-    <div><?= $new->content; ?></div>
-<?php endforeach; ?>
+
+    <?php foreach ($news as $new): ?>
+        <hr>
+        <h2>
+            <a href="/article.php?id=<?= $new->id; ?>">
+                <?= $new->title; ?>
+            </a>
+        </h2>
+        <div><?= $new->date; ?></div>
+        <div><?= $new->content; ?></div>
+        <form action="" method="post">
+            <input type="hidden" name="action" value="delete" />
+            <input type="hidden" name="id" value="<?= $new->id; ?>" />
+            <input type="submit" value="delete" />
+        </form>
+    <?php endforeach; ?>
+
+
 </body>
 </html>
