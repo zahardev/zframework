@@ -4,4 +4,8 @@ require_once 'autoload.php';
 
 $news = \App\Models\News::getLastNews();
 
-include __DIR__ . '/App/views/home.php';
+$view = new App\View();
+$view->news = $news;
+
+$view->display('home');
+

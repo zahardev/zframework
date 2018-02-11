@@ -20,6 +20,7 @@
                 <?= $new->title; ?>
             </a>
         </h2>
+        <div>Author: <?php echo $new->author->name ?? 'no author'; ?></div>
         <div><?= $new->date; ?></div>
         <div><?= $new->content; ?></div>
     <?php endforeach; ?>

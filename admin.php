@@ -33,7 +33,8 @@ if($action){
     header('LOCATION: ' . '/admin.php');
 }
 
+$view = new \App\View();
 
-$news = \App\Models\News::getLastNews('DESC', 0, 100);
+$view->news = \App\Models\News::getLastNews('DESC', 0, 100);
 
-include __DIR__ . '/App/views/admin.php';
+$view->display('admin');
