@@ -2,10 +2,7 @@
 
 require_once 'autoload.php';
 
-$news = \App\Models\News::getLastNews();
+$newsController = new \App\Controllers\NewsController();
 
-$view = new App\View();
-$view->news = $news;
-
-$view->display('home');
+$newsController->action('Index');
 

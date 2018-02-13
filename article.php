@@ -2,13 +2,7 @@
 
 require_once 'autoload.php';
 
-$id = filter_input(INPUT_GET, 'id');
+$controller = new \App\Controllers\NewsController();
 
-$view          = new \App\View();
-$view->article = \App\Models\News::findById($id);
+$controller->action('Article');
 
-if ($view->article) {
-    $view->display('article');
-} else {
-    echo 'Page not found!';
-}
