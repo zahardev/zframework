@@ -25,11 +25,10 @@ class Db
 
     public function exec($query, $args = [])
     {
-        $query = vsprintf($query, $args);
-
         foreach ($args as $k => $v) {
             if(false !== strpos($query, $k)){
-                $query = str_replace($k, "'$v'", $query);
+                $value = ( NULL === $v ) ? 'NULL' : "'$v'";
+                $query = str_replace($k, $value , $query);
             }
         }
 
