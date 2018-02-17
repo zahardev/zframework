@@ -21,7 +21,7 @@
     <?php foreach ($news as $new): ?>
         <hr>
 
-        <a href="/article.php?id=<?= $new->id; ?>">
+        <a href="/news/article/?id=<?= $new->id; ?>">
             View
         </a>
         <form action="" method="post">

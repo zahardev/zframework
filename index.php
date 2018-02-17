@@ -9,11 +9,18 @@ $request = trim($request, '/');
 if ($request) {
     $request        = explode('/', $request);
     $controllerName = '\\App\\Controllers\\'.ucfirst($request[0]).'Controller';
-    $action         = ucfirst($request[1]);
+
+    if(isset($request[1])){
+        $action         = ucfirst($request[1]);
+    }
 }
 
+if(isset($_REQUEST['action'])){
+    $action = $_REQUEST['action'];
+}
+
+$controllerName = $controllerName ?? '\\App\\Controllers\\HomeController';
 $action         = $action ?? 'Index';
-$controllerName = $controllerName ?? '\\App\\Controllers\\NewsController';
 
 $controller = new $controllerName();
 /**@var \App\Controller $controller */

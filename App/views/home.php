@@ -16,7 +16,7 @@
   <h1>News</h1>
     <?php foreach ($news as $new): ?>
         <h2>
-            <a href="/article.php?id=<?= $new->id; ?>">
+            <a href="/news/article/?id=<?= $new->id; ?>">
                 <?= $new->title; ?>
             </a>
         </h2>
