@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Db;
 use \App\Model;
+use App\MultiException;
 
 /**
  * Class News
@@ -53,7 +54,7 @@ class News extends Model
             $orders = ['ASC', 'DESC'];
 
             if ( ! in_array($order, $orders)) {
-                throw new \Exception('$order can be only DESC or ASC');
+                throw new \App\Exceptions\Model('$order can be only DESC or ASC');
             }
 
             $query = 'SELECT * FROM `%s` ORDER BY `date` %s LIMIT %d, %d';
@@ -61,8 +62,8 @@ class News extends Model
 
             $res = $db->getResults($query, static::class);
             return $res;
-        } catch (\Exception $e) {
-            echo __METHOD__.$e;
+        } catch (\App\Exceptions\Model $e) {
+            echo __METHOD__ . $e;
             return [];
         }
     }
@@ -85,5 +86,23 @@ class News extends Model
             return $this->author;
         }
         return null;
+    }
+
+
+    public function beforeSave()
+    {
+        $errors = MultiException::instance(); /** @var MultiException $errors */
+        //Do some validation:
+        if(empty($this->title)){
+            $errors[] = 'Please specify title';
+        }
+
+        if(empty($this->description)){
+            $errors[] = 'Please specify description';
+        }
+
+        if($errors){
+            throw $errors;
+        }
     }
 }

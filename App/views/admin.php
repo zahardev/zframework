@@ -16,6 +16,12 @@
 <h1>Admin</h1>
 <h2>Add news</h2>
 
+<?php foreach($errors as $error) : ?>
+    <p class="error" style="color: red;">
+        <?= $error ?>
+    </p>
+<?php endforeach; ?>
+
 <?php include __DIR__ . '/add_news_form.php'; ?>
 
     <?php foreach ($news as $new): ?>

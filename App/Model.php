@@ -107,11 +107,16 @@ abstract class Model
 
     public function save()
     {
+        $this->beforeSave();
         if($this->isEmpty()){
             return $this->insert();
         } else {
             return $this->update();
         }
+    }
+
+    public function beforeSave() {
+
     }
 
     public function delete()

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controller;
 use App\Models\News;
+use App\MultiException;
 use App\View;
 
 class AdminController extends Controller
@@ -13,6 +14,12 @@ class AdminController extends Controller
         $view = new View();
 
         $view->news = News::getLastNews('DESC', 0, 100);
+
+        if( PHP_SESSION_NONE === session_status()){
+            session_start();
+        }
+
+        $view->errors  = $_SESSION['errors'] ?? [];
 
         $view->display('admin');
     }
@@ -26,7 +33,16 @@ class AdminController extends Controller
         if(empty($news->date)){
             $news->date = date('Y-m-d');
         }
-        $news->save();
+        try{
+            $news->save();
+        } catch (MultiException $errors){
+            if( PHP_SESSION_NONE === session_status()){
+                session_start();
+            }
+            if( PHP_SESSION_ACTIVE === session_status()){
+                $_SESSION['errors'] = $errors;
+            }
+        }
         header('LOCATION: ' . '/admin/');
     }
 
